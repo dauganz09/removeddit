@@ -1,9 +1,11 @@
 import { fetchJson, sleep } from '../../utils'
 
-export const chunkSize = 250;
-const postURL    = 'https://api.pushshift.io/reddit/submission/search/?fields=author,created_utc,domain,edited,id,link_flair_text,num_comments,permalink,position,removed_by_category,retrieved_on,retrieved_utc,score,selftext,subreddit,thumbnail,thumbnail_height,thumbnail_width,title,url&ids='
-const commentURL = 'https://api.pushshift.io/reddit/comment/search/?fields=author,body,created_utc,id,link_id,parent_id,retrieved_on,retrieved_utc,score,subreddit&'
+export const chunkSize = 100;
+// const postURL2    = 'https://api.pullpush.io/reddit/search/submission?filter=author,created_utc,domain,edited,id,link_flair_text,num_comments,permalink,position,removed_by_category,retrieved_on,retrieved_utc,score,selftext,subreddit,thumbnail,thumbnail_height,thumbnail_width,title,url&ids='
+const postURL = 'https://api.pullpush.io/reddit/submission/search/?fields=author,created_utc,domain,edited,id,link_flair_text,num_comments,permalink,position,removed_by_category,retrieved_on,retrieved_utc,score,selftext,subreddit,thumbnail,thumbnail_height,thumbnail_width,title,url&ids='
+const commentURL = 'https://api.pullpush.io/reddit/comment/search?fields=author,body,created_utc,id,link_id,parent_id,retrieved_on,retrieved_utc,score,subreddit&'
 const commentURLbyIDs  = `${commentURL}ids=`
+// const commentURLbyLink = `${commentURL}limit=${chunkSize}&sort=id&order=asc&link_id=`
 const commentURLbyLink = `${commentURL}metadata=true&size=${chunkSize}&sort=asc&link_id=`
 
 const errorHandler = (msg, origError, from) => {
